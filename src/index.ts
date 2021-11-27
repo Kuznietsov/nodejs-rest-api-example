@@ -1,4 +1,8 @@
 import express from 'express';
 
-const app = express();
-app.listen(3000, () => console.log('started listening'));
+async function bootstrap() {
+  const app = express();
+  app.listen(3000, () => console.log('started listening'));
+}
+
+bootstrap();
