@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "strict": true,
+    "composite": true,
+    "skipLibCheck": true,
+    "lib": ["es6"],
+    "target": "es6",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "preserveSymlinks": true,
+    "forceConsistentCasingInFileNames": false,
+    "noUnusedLocals": true,
+    "downlevelIteration": true,
+    "importHelpers": true,
+    "types": ["node", "jest"],
+    "outDir": "dist/"
+  },
+  "include": [
+    "src/**/*",
+  ],
+}
