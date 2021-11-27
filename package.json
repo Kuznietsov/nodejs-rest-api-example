@@ -2,7 +2,6 @@
   "name": "rest-api-example",
   "version": "1.0.0",
   "description": "Example of the RESTful API with 3-layered architecture.",
-  "main": "index.js",
   "scripts": {
     "start": "yarn build && pm2 start",
     "stop": "pm2 stop all",
