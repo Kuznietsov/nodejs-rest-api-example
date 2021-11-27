@@ -1,4 +1,5 @@
 import type { Express } from 'express';
+import { setupIoC as setupServicesIoC } from './services';
 import { setupIoC as setupControllersIoC } from './controllers';
 import { setupRoutes } from './routes';
 
@@ -15,6 +16,7 @@ export class App {
   }
 
   private setupIoC() {
+    setupServicesIoC();
     setupControllersIoC();
   }
 }
