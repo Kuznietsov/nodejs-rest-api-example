@@ -34,4 +34,5 @@ node_modules/
 # dotenv environment variables file
 .env
 
+# the result of the ts compilation
 dist
