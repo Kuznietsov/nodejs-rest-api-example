@@ -5,7 +5,7 @@ import { UsersController } from 'src/controllers/interfaces';
 
 const router = Router();
 
-export const BASE_ROUTE = 'users';
+export const BASE_ROUTE = '/users';
 
 export const routes = () => {
   const usersController = ioc.get<UsersController>(IDENTIFIERS.USERS_CONTROLLER);
