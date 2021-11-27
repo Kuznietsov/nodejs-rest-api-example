@@ -8,6 +8,8 @@
     "target": "es6",
     "module": "commonjs",
     "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
@@ -16,7 +18,7 @@
     "noUnusedLocals": true,
     "downlevelIteration": true,
     "importHelpers": true,
-    "types": ["node", "jest"],
+    "types": ["node", "reflect-metadata", "jest"],
     "outDir": "dist/"
   },
   "include": [
