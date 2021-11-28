@@ -1,0 +1,1 @@
+export { setupMiddlewares } from './setup';
