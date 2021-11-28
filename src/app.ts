@@ -10,9 +10,12 @@ export class App {
   constructor(private readonly app: Express) {}
 
   public async setup() {
+    this.setupProcessHandlers();
+
     await setupModels();
 
     this.setupIoC();
+
     setupMiddlewares(this.app);
     setupRoutes(this.app);
     setupErrorMiddlewares(this.app);
@@ -27,5 +30,11 @@ export class App {
     setupRepositoriesIoC();
     setupServicesIoC();
     setupControllersIoC();
+  }
+
+  private setupProcessHandlers() {
+    process.on('unhandledRejection', (error) => {
+      console.log('unhandledRejection', error);
+    });
   }
 }
