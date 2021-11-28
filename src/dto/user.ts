@@ -1,8 +1,9 @@
 export interface UserDto {
   id: string;
-  name: string;
+  login: string;
+  password: string;
+  age: number;
+  isDeleted: boolean;
 }
 
-export interface PreUserDto {
-  name: string;
-}
+export type PreUserDto = Omit<UserDto, 'id'>;

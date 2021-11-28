@@ -1,9 +1,10 @@
 import express from 'express';
+import './env';
 import { App } from './app';
 
 async function bootstrap() {
   const app = new App(express());
-  app.setup();
+  await app.setup();
   app.start();
 }
 

@@ -1,5 +1,5 @@
-import type { Express } from 'express';
-
+import { Express } from 'express';
+import { setupIoC as setupModelsIoC, setupModels } from './models';
 import { setupIoC as setupRepositoriesIoC } from './repositories';
 import { setupIoC as setupServicesIoC } from './services';
 import { setupIoC as setupControllersIoC } from './controllers';
@@ -8,7 +8,8 @@ import { setupRoutes } from './routes';
 export class App {
   constructor(private readonly app: Express) {}
 
-  public setup() {
+  public async setup() {
+    await setupModels();
     this.setupIoC();
     setupRoutes(this.app);
   }
@@ -18,6 +19,7 @@ export class App {
   }
 
   private setupIoC() {
+    setupModelsIoC();
     setupRepositoriesIoC();
     setupServicesIoC();
     setupControllersIoC();
