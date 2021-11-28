@@ -4,17 +4,18 @@ import { setupIoC as setupRepositoriesIoC } from './repositories';
 import { setupIoC as setupServicesIoC } from './services';
 import { setupIoC as setupControllersIoC } from './controllers';
 import { setupRoutes } from './routes';
-import { setupMiddlewares } from './middlewares';
+import { setupErrorMiddlewares, setupMiddlewares } from './middlewares';
 
 export class App {
   constructor(private readonly app: Express) {}
 
   public async setup() {
     await setupModels();
-    setupMiddlewares(this.app);
 
     this.setupIoC();
+    setupMiddlewares(this.app);
     setupRoutes(this.app);
+    setupErrorMiddlewares(this.app);
   }
 
   public start() {

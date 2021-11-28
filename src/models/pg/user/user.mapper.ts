@@ -1,13 +1,18 @@
-import { UserDto } from '../../../dto';
+import { injectable } from 'inversify';
+import 'reflect-metadata';
+import { PreUserDto, UserDto } from '../../../dto';
 import { Mapper } from '../../../core';
-import { UserAttributes } from './user';
+import { UserAttributes, UserAttributesCreation } from './user';
 
-export class UserMapper implements Mapper<UserDto, UserAttributes> {
+@injectable()
+export class UserMapper
+  implements Mapper<UserDto | PreUserDto, UserAttributes | UserAttributesCreation>
+{
   toDomain(dalEntity: UserAttributes): UserDto {
     return { ...dalEntity };
   }
 
-  toDalEntity(domain: UserDto): UserAttributes {
-    return { ...domain, isDeleted: false };
+  toDalEntity(domain: UserDto | PreUserDto): UserAttributes | UserAttributesCreation {
+    return { ...domain };
   }
 }

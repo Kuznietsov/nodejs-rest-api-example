@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { ObjectSchema, ValidationError } from 'joi';
 import status from 'http-status';
+import { ErrorResponse } from 'src/errors';
 
 export const validate =
   (validator: ObjectSchema) => async (req: Request, res: Response, next: NextFunction) => {
@@ -10,7 +11,12 @@ export const validate =
       next();
     } catch (error) {
       if (error instanceof ValidationError) {
-        res.status(status.BAD_REQUEST).send(error.details);
+        const err: ErrorResponse = {
+          name: error.name,
+          message: JSON.stringify(error.details.map(({ message }) => message)),
+          statusCode: status.BAD_REQUEST,
+        };
+        res.status(err.statusCode).send(err);
         return;
       }
 

@@ -1,7 +1,11 @@
 import { DataTypes, Model, UUIDV4 } from 'sequelize';
+import { injectable } from 'inversify';
+import 'reflect-metadata';
+
 import { UserAttributes, UserAttributesCreation } from './user';
 import { sequelize } from '../connection';
 
+@injectable()
 export class UserModel
   extends Model<UserAttributes, UserAttributesCreation>
   implements UserAttributes
