@@ -11,8 +11,9 @@ export class App {
 
   public async setup() {
     await setupModels();
-    this.setupIoC();
     setupMiddlewares(this.app);
+
+    this.setupIoC();
     setupRoutes(this.app);
   }
 
