@@ -1,4 +1,11 @@
 import express from 'express';
+import './env';
+import { App } from './app';
 
-const app = express();
-app.listen(3000, () => console.log('started listening'));
+async function bootstrap() {
+  const app = new App(express());
+  await app.setup();
+  app.start();
+}
+
+bootstrap();

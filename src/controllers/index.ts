@@ -1,0 +1,1 @@
+export { setupIoC } from './setup';
