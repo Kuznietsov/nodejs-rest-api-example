@@ -21,4 +21,9 @@ export class UsersRepositoryImpl implements UsersRepository {
   async createUser(user: PreUserDto): Promise<UserDto> {
     return await this.userModel.create(this.userMapper.toDalEntity(user));
   }
+
+  async findUsers(): Promise<UserDto[]> {
+    const users = await this.userModel.findAll({ raw: true });
+    return users.map(this.userMapper.toDomain);
+  }
 }

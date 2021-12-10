@@ -32,4 +32,13 @@ export class UsersControllerImpl implements UsersController {
       next(error);
     }
   }
+
+  async getUsers(req: Request<null, UserDto[]>, res: Response<UserDto[]>, next: NextFunction) {
+    try {
+      const users = await this.usersService.getUsers();
+      return res.status(httpStatus.OK).send(users);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
