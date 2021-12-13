@@ -7,8 +7,12 @@ import { PreUserDto, UserDto } from '../dto';
 import identifiers from '../services/identifiers';
 import { UsersService } from '../services/interfaces';
 import { Response, Request, UsersController } from './interfaces';
-import { ErrorResponse } from 'src/errors/error_response';
+import { ErrorResponse } from '../errors/error_response';
 import { NextFunction } from 'express';
+import { createLogger } from '../logger';
+import { logErrors } from './helpers';
+
+const logger = createLogger('[USERS CONTROLLER]');
 
 @injectable()
 export class UsersControllerImpl implements UsersController {
@@ -23,6 +27,8 @@ export class UsersControllerImpl implements UsersController {
       const user = await this.usersService.createUser(req.body);
       return res.status(httpStatus.CREATED).send(user);
     } catch (error) {
+      logErrors(logger, this.createUser.name, req, error);
+
       if (error instanceof EntityExistsError) {
         res
           .status(httpStatus.CONFLICT)
@@ -38,6 +44,7 @@ export class UsersControllerImpl implements UsersController {
       const users = await this.usersService.getUsers();
       return res.status(httpStatus.OK).send(users);
     } catch (error) {
+      logErrors(logger, this.getUsers.name, req, error);
       next(error);
     }
   }

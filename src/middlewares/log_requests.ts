@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { createLogger } from '../logger';
 
-const logger = createLogger('REST');
+const logger = createLogger('[REST]');
 
 export const logRequests = (req: Request, res: Response, next: NextFunction) => {
   const methodsWithBody = ['POST', 'PUT', 'PATCH'];

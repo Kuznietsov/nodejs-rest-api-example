@@ -3,7 +3,7 @@ import httpStatus from 'http-status';
 import { createLogger } from '../logger';
 import { ErrorResponse } from '../errors';
 
-const logger = createLogger('UNHANDLED ERROR');
+const logger = createLogger('[UNHANDLED ERROR]');
 
 export function handlerErrors(
   err: Error | ErrorResponse,
