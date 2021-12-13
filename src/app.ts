@@ -5,6 +5,10 @@ import { setupIoC as setupServicesIoC } from './services';
 import { setupIoC as setupControllersIoC } from './controllers';
 import { setupRoutes } from './routes';
 import { setupErrorMiddlewares, setupMiddlewares } from './middlewares';
+import { createLogger } from './logger';
+
+const unhandledRejectionLogger = createLogger('UNHANDLED REJECTION');
+const uncaughtExceptionLogger = createLogger('UNCAUGHT EXCEPTION');
 
 export class App {
   constructor(private readonly app: Express) {}
@@ -33,8 +37,14 @@ export class App {
   }
 
   private setupProcessHandlers() {
-    process.on('unhandledRejection', (error) => {
-      console.log('unhandledRejection', error);
+    process.on('uncaughtException', (error) => {
+      uncaughtExceptionLogger.error(error);
     });
+
+    process.on('unhandledRejection', (error) => {
+      unhandledRejectionLogger.error(error);
+    });
+
+    Promise.reject('herer');
   }
 }
