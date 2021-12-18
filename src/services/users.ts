@@ -21,6 +21,10 @@ export class UsersServiceImpl implements UsersService {
     return await this.usersRepository.createUser(user);
   }
 
+  async getUsers(): Promise<UserDto[]> {
+    return await this.usersRepository.findUsers();
+  }
+
   private async findUserByLogin(login: string): Promise<UserDto | null> {
     return await this.usersRepository.findUserByLogin(login);
   }

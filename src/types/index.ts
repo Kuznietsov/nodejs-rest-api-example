@@ -8,6 +8,11 @@ export interface PgDatabaseConfig {
   PG_PORT: number | string;
 }
 
-export type PURE_ENV_CONFIG = { NODE_ENV?: ENV } & PgDatabaseConfig &
-  Record<string, string | number>;
-export type ENV_CONFIG = { NODE_ENV?: ENV } & PgDatabaseConfig;
+export interface LoggerConfig {
+  COMBINE_LOG_FILE?: string;
+  ERROR_LOG_FILE?: string;
+}
+
+export type ENV_CONFIG = { NODE_ENV?: ENV } & PgDatabaseConfig & LoggerConfig;
+
+export type PURE_ENV_CONFIG = ENV_CONFIG & Record<string, string | number>;

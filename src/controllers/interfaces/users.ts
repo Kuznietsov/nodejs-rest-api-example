@@ -5,4 +5,5 @@ import { ErrorResponse } from '../../errors';
 
 export interface UsersController {
   createUser: RequestHandler<ParamsDictionary, UserDto | ErrorResponse, PreUserDto>;
+  getUsers: RequestHandler<ParamsDictionary, UserDto[]>;
 }

@@ -1,17 +1,5 @@
-import { PgDatabaseConfig, PURE_ENV_CONFIG } from '../types';
-import { validateEnv } from '../validators';
-
-const defaultConfig = {
-  PG_DATABASE: 'rest_dev',
-  PG_USER: 'root',
-  PG_PASSWORD: '11111111',
-  PG_HOST: '127.0.0.1',
-  PG_PORT: 5432,
-};
-
-const processEnv = process.env as PURE_ENV_CONFIG;
-
-const env = validateEnv(processEnv, defaultConfig);
+import env from './env';
+import { PgDatabaseConfig } from '../types';
 
 const config: PgDatabaseConfig = {
   PG_HOST: env.PG_HOST,

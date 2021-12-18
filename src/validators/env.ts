@@ -13,10 +13,12 @@ const develomentSchemaFactory: SchemaFactory = (defaultConfig) =>
       PG_PASSWORD: Joi.string().default(defaultConfig?.PG_PASSWORD),
       PG_DATABASE: Joi.string().default(defaultConfig?.PG_DATABASE),
       PG_PORT: Joi.number().port().default(defaultConfig?.PG_PORT),
+      COMBINE_LOG_FILE: Joi.string().default(defaultConfig?.COMBINE_LOG_FILE),
+      ERROR_LOG_FILE: Joi.string().default(defaultConfig?.ERROR_LOG_FILE),
     })
     .unknown();
 
-const productionSchemaFactory: SchemaFactory = () =>
+const productionSchemaFactory: SchemaFactory = (defaultConfig) =>
   Joi.object<ENV_CONFIG>()
     .keys({
       NODE_ENV: Joi.string().valid(PRODUCTION_ENV).required(),
@@ -25,6 +27,8 @@ const productionSchemaFactory: SchemaFactory = () =>
       PG_PASSWORD: Joi.string().required(),
       PG_DATABASE: Joi.string().required(),
       PG_PORT: Joi.number().port().required(),
+      COMBINE_LOG_FILE: Joi.string().default(defaultConfig?.COMBINE_LOG_FILE),
+      ERROR_LOG_FILE: Joi.string().default(defaultConfig?.ERROR_LOG_FILE),
     })
     .unknown();
 
